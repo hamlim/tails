@@ -29,7 +29,7 @@ app.use("*", auth);
 
 app.post("/v1/login", v1LoginHandler);
 
-app.get("/v1/signup", v1LoginHandler);
+app.post("/v1/signup", v1LoginHandler);
 
 // app.get("/v1/recipes", (c) => {
 //   // return recipes
