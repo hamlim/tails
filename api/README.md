@@ -11,48 +11,34 @@ This is a minimal project with [Hono](https://github.com/honojs/hono/) for Cloud
 
 ## Usage
 
-Initialize
-
-```
-npx create-cloudflare my-app https://github.com/honojs/hono-minimal
-```
-
 Install
 
 ```
-yarn install
+bun install
 ```
 
 Develop
 
 ```
-yarn dev
+bun run dev
 ```
 
 Test
 
 ```
-yarn test
+bun run test
 ```
 
 Deploy
 
 ```
-yarn deploy
+bun run deploy
 ```
 
-## Examples
+## Notes:
 
-See: <https://github.com/honojs/examples>
+Setting up local db:
 
-## For more information
-
-See: <https://honojs.dev>
-
-## Author
-
-Yusuke Wada <https://github.com/yusukebe>
-
-## License
-
-MIT
+```sh
+bun wrangler d1 execute tails-db --local --file=./migrations/schema.sql
+```

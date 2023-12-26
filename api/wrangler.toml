@@ -1,6 +1,8 @@
 name = "tails-api"
 main = "src/index.ts"
 
+compatibility_flags = ["nodejs_compat"]
+
 compatibility_date = "2022-11-22"
 
 [[d1_databases]]

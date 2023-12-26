@@ -1,0 +1,28 @@
+meta {
+  name: v1/login
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:56639/v1/login
+  body: json
+  auth: none
+}
+
+headers {
+  user-agent: bruno
+  content-type: application/json
+  token: testing-token
+}
+
+body:json {
+  {
+    "password": "testing",
+    "email": "testing@testing.com"
+  }
+}
+
+tests {
+  expect(res.status).to.equal(200);
+}

@@ -2,8 +2,9 @@ create table if not exists users (
     id integer primary key autoincrement,
     email text not null,
     password text not null,
-    created_at datetime not null,
-    updated_at datetime not null
+    salt text not null
+    -- created_at datetime not null,
+    -- updated_at datetime not null
 );
 
 create table if not exists session (
