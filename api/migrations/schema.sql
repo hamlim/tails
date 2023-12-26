@@ -11,7 +11,7 @@ create table if not exists session (
     expires_at integer not null,
     user_id text not null,
     foreign key (user_id) references users (id)
-)
+);
 
 create table if not exists ingredients (
     id integer primary key autoincrement,

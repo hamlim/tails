@@ -1,4 +1,9 @@
-name="hono-minimal"
-main="src/index.ts"
+name = "tails-api"
+main = "src/index.ts"
 
 compatibility_date = "2022-11-22"
+
+[[d1_databases]]
+binding = "DB" # i.e. available in your Worker on env.DB
+database_name = "tails-db"
+database_id = "2f0a76af-ac67-4298-b0ec-6a639e04d92c"

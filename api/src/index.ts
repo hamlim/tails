@@ -3,8 +3,8 @@ import { type Context, Hono } from "hono";
 import { cors } from "hono/cors";
 
 type Bindings = {
-  // MY_BUCKET: R2Bucket
   TOKEN: string;
+  DB: D1Database;
 };
 
 const app = new Hono<{ Bindings: Bindings }>();
