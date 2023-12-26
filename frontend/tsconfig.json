@@ -25,6 +25,9 @@
     "paths": {
       "@recipes/*": [
         "./feijoa-ui/*"
+      ],
+      "@local/*": [
+        "./local/*"
       ]
     }
   },
