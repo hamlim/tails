@@ -7,3 +7,6 @@ yarn.lock
 
 # Output of 'npm pack'
 *.tgz
+
+# Env vars:
+.dev.vars
