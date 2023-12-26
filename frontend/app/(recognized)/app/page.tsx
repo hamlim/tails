@@ -3,11 +3,10 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 function checkAuth() {
-  if (cookies().has("token")) {
-    return true;
-  } else {
-    return redirect("/");
+  if (cookies().has("auth_session")) {
+    return;
   }
+  return redirect("/");
 }
 
 export default function AppPage() {
