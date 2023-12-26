@@ -9,7 +9,8 @@
   },
   "excludes": [
     "**/node_modules",
-    "**/*-lock.json"
+    "**/*-lock.json",
+    ".wrangler/**"
   ],
   "plugins": [
     "https://plugins.dprint.dev/typescript-0.88.7.wasm",

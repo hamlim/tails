@@ -12,7 +12,7 @@ export default function AnonymousLayout({ children }: { children: ReactNode }) {
           <ActiveLink href="/">Tails</ActiveLink>
         </Heading>
         <div>
-          <ActiveLink href="/login">Login</ActiveLink> <ActiveLink href="/signup">Signup</ActiveLink>
+          <ActiveLink href="/enter">Login / Signup</ActiveLink>
         </div>
       </header>
       <article className="flex-grow flex items-center justify-center">
