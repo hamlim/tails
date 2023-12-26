@@ -24,7 +24,10 @@ app.use("*", cors());
 app.use("*", auth);
 
 app.get("/v1/login", (c) => {
-  // login
+  // get formdata request body
+  // check if user exists
+  // check if password matches
+  // send response with cookie for frontend to set
 });
 
 app.get("/v1/signup", (c) => {
