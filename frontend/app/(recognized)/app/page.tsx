@@ -32,6 +32,7 @@ async function getUser() {
   return body.user;
 }
 
+// @TODO: Pagination
 async function Recipes({ userId }: { userId: number }) {
   let apiEndpoint = process.env.API_ENDPOINT;
   let response = await fetch(`${apiEndpoint}/v1/recipes?userID=${userId}`, {
@@ -70,7 +71,6 @@ async function Recipes({ userId }: { userId: number }) {
 
 export default async function AppPage() {
   let user = await getUser();
-  console.log({ user });
   return (
     <div className="py-5">
       <Heading is="h2">Recipes:</Heading>
