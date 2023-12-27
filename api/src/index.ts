@@ -1,7 +1,9 @@
 import { type Context, Hono } from "hono";
 // import { deleteCookie, getCookie, getSignedCookie, setCookie, setSignedCookie } from "hono/cookie";
 import { cors } from "hono/cors";
+import { handler as v1AuthHandler } from "./routes/v1/auth";
 import { handler as v1LoginHandler } from "./routes/v1/login";
+import { handler as v1RecipesHandler } from "./routes/v1/recipes";
 
 type Bindings = {
   TOKEN: string;
@@ -31,9 +33,9 @@ app.post("/v1/login", v1LoginHandler);
 
 app.post("/v1/signup", v1LoginHandler);
 
-// app.get("/v1/recipes", (c) => {
-//   // return recipes
-// });
+app.post("/v1/auth", v1AuthHandler);
+
+app.get("/v1/recipes", v1RecipesHandler);
 
 // app.get("/v1/recipe/:id", (c) => {
 //   // get specific recipe

@@ -1,3 +1,4 @@
+import { SessionCookie } from "@local/shared-types";
 import { Button } from "@recipes/button";
 import { Heading } from "@recipes/heading";
 import { Input } from "@recipes/input";
@@ -29,19 +30,15 @@ export default function EnterPage() {
       }),
     });
 
+    if (!res.ok) {
+      throw new Error(`Failed to login: ${res.status}`);
+    }
+
     let body = await res.json() as {
       error: string;
     } | {
       success: true;
-      sessionCookie: {
-        name: string;
-        value: string;
-        attributes: {
-          path: string;
-          expires: number;
-          httpOnly: boolean;
-        };
-      };
+      sessionCookie: SessionCookie;
     };
 
     if ("error" in body) {
@@ -50,7 +47,7 @@ export default function EnterPage() {
 
     if ("success" in body) {
       let { sessionCookie } = body;
-      cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);
+      cookies().set("auth_session", sessionCookie.value, sessionCookie.attributes);
       return redirect("/app");
     }
   }

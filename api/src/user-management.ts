@@ -3,7 +3,7 @@ import { Lucia } from "lucia";
 
 export function initializeLucia(D1: D1Database) {
   const adapter = new D1Adapter(D1, {
-    user: "user",
+    user: "users",
     session: "session",
   });
   return new Lucia(adapter);
