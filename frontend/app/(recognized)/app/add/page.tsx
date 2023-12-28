@@ -30,6 +30,10 @@ function RecipeForm({ userId }: { userId: number }) {
 
     let res = await fetch(`${process.env.API_ENDPOINT}/v1/create-recipe?userID=${userId}`, {
       method: "POST",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        "auth-token": process.env.API_TOKEN,
+      }),
       body: JSON.stringify({ title, description, ingredients, steps }),
     });
 
