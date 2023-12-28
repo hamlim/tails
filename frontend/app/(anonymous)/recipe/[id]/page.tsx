@@ -66,7 +66,7 @@ export default async function RecipePage({ params: { id } }: { params: { id: str
         ))}
       </List>
       <Heading is="h4">Steps:</Heading>
-      <pre className="text-wrap">{recipe.steps}</pre>
+      <div className="whitespace-pre-wrap">{recipe.steps}</div>
     </div>
   );
 }
