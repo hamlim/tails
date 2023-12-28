@@ -2,7 +2,14 @@ import { Heading } from "@recipes/heading";
 import { List, ListItem } from "@recipes/list";
 import { Text } from "@recipes/text";
 
-export default async function RecipePage({ params: { id } }: { params: { id: string } }) {
+type Recipe = {
+  title: string;
+  description: string;
+  steps: string;
+  ingredients: Array<{ name: string; quantity: string }>;
+};
+
+async function loadRecipe({ id }: { id: string }): Promise<Recipe | Error> {
   let apiEndpoint = process.env.API_ENDPOINT;
   let res = await fetch(`${apiEndpoint}/v1/recipe/${id}`, {
     headers: new Headers({
@@ -11,15 +18,40 @@ export default async function RecipePage({ params: { id } }: { params: { id: str
   });
 
   if (!res.ok) {
-    return <Text>Recipe not found!</Text>;
+    return new Error(`Failed to load recipe: ${res.status}`);
   }
 
-  let recipe = await res.json() as {
-    title: string;
-    description: string;
-    steps: string;
-    ingredients: Array<{ name: string; quantity: string }>;
+  let recipe = await res.json() as Recipe;
+
+  return recipe;
+}
+
+export async function generateMetadata({ params: { id } }: { params: { id: string } }) {
+  let recipe = await loadRecipe({ id });
+  if (recipe instanceof Error) {
+    return {
+      title: "Recipe not found!",
+      description: "Recipe not found!",
+      openGraph: {
+        images: "https://source.unsplash.com/featured/?cocktail",
+      },
+    };
+  }
+  return {
+    title: recipe.title,
+    description: recipe.description,
+    openGraph: {
+      images: "https://source.unsplash.com/featured/?cocktail",
+    },
   };
+}
+
+export default async function RecipePage({ params: { id } }: { params: { id: string } }) {
+  let recipe = await loadRecipe({ id });
+
+  if (recipe instanceof Error) {
+    return <Text>Recipe not found!</Text>;
+  }
 
   return (
     <div className="flex flex-col gap-4 p-4">
