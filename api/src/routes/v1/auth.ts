@@ -3,9 +3,9 @@ import { initializeLucia } from "../../user-management";
 
 export async function handler(c: Context) {
   let lucia = initializeLucia(c.env.DB);
-  let { sessionId } = await c.req.json<{ sessionId: string }>();
+  let sessionID = c.req.query("sessionID");
 
-  let result = await lucia.validateSession(sessionId);
+  let result = await lucia.validateSession(sessionID);
 
   if (result.session && result.session.fresh) {
     const sessionCookie = lucia.createSessionCookie(result.session.id);

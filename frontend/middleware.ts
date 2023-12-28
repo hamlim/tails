@@ -3,9 +3,11 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export async function middleware(request: NextRequest) {
-  let sessionId = request.cookies.get("auth_session")?.value;
+  console.log(request.url);
 
-  if (!sessionId) {
+  let sessionID = request.cookies.get("auth_session")?.value;
+
+  if (!sessionID) {
     NextResponse.redirect(new URL("/enter", request.url));
     return;
   }
@@ -14,13 +16,11 @@ export async function middleware(request: NextRequest) {
 
   let apiEndpoint = process.env.API_ENDPOINT;
 
-  let authResponse = await fetch(`${apiEndpoint}/v1/auth`, {
-    method: "POST",
+  let authResponse = await fetch(`${apiEndpoint}/v1/auth?sessionID=${sessionID}`, {
+    method: "GET",
     headers: {
-      "Content-Type": "application/json",
       "auth-token": process.env.API_TOKEN,
     },
-    body: JSON.stringify({ sessionId }),
   });
 
   if (!authResponse.ok) {

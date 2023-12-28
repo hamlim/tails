@@ -3,11 +3,8 @@ import type { Config } from "tailwindcss";
 export default {
   darkMode: ["class"],
   content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
+    "./local/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
-    "./feijoa-ui/*.{ts,tsx}",
     "./feijoa-ui/**/*.{ts,tsx}",
   ],
   theme: {

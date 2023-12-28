@@ -1,36 +1,9 @@
+import { getUser } from "@local/getUser";
 import { Heading } from "@recipes/heading";
+import { Link } from "@recipes/link";
 import { List, ListItem } from "@recipes/list";
 import { Text } from "@recipes/text";
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import { Suspense } from "react";
-
-async function getUser() {
-  let sessionId = cookies().get("auth_session")?.value;
-  if (!sessionId) {
-    redirect("/enter");
-  }
-
-  let apiEndpoint = process.env.API_ENDPOINT;
-  let response = await fetch(`${apiEndpoint}/v1/auth`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "auth-token": process.env.API_TOKEN,
-    },
-    body: JSON.stringify({ sessionId }),
-  });
-
-  if (!response.ok) {
-    redirect("/enter");
-  }
-
-  let body = await response.json() as {
-    user: { id: number };
-  };
-
-  return body.user;
-}
 
 // @TODO: Pagination
 async function Recipes({ userId }: { userId: number }) {
@@ -59,10 +32,10 @@ async function Recipes({ userId }: { userId: number }) {
     <List is="ul">
       {body.recipes.map((recipe) => (
         <ListItem key={recipe.id}>
-          <Heading is="h4">{recipe.title}</Heading>
+          <Heading is="h4">
+            <Link href={`/recipe/${recipe.id}`}>{recipe.title}</Link>
+          </Heading>
           <Text>{recipe.description}</Text>
-          <Text>{recipe.ingredients}</Text>
-          <Text>{recipe.steps}</Text>
         </ListItem>
       ))}
     </List>

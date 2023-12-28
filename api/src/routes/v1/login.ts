@@ -1,4 +1,4 @@
-import { Context } from "hono";
+import type { Context } from "hono";
 import { initializeLucia } from "../../user-management";
 
 let encoder = new TextEncoder();
@@ -68,6 +68,7 @@ export async function handler(c: Context) {
       salt,
     )
       .run();
+    console.log({ loggingIn: true, insertionResult });
 
     let { last_row_id: userId } = insertionResult.meta;
 
