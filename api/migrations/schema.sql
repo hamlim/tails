@@ -24,8 +24,9 @@ create table if not exists recipes (
     user_id integer not null,
     title text not null,
     description text not null,
-    created_at datetime not null,
-    updated_at datetime not null,
+    steps text not null,
+    -- created_at datetime not null,
+    -- updated_at datetime not null,
     foreign key (user_id) references users (id)
 );
 
