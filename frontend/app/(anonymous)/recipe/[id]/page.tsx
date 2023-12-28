@@ -54,7 +54,7 @@ export default async function RecipePage({ params: { id } }: { params: { id: str
   }
 
   return (
-    <div className="flex flex-col gap-4 p-4">
+    <div className="flex flex-col gap-4 p-4 max-w-3xl mx-auto">
       <Heading is="h2">{recipe.title}</Heading>
       <Text>{recipe.description}</Text>
       <Heading is="h4">Ingredients:</Heading>
