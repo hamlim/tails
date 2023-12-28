@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --verbose",
     "dev": "wrangler dev src/index.ts --port 8080",
-    "deploy": "wrangler publish src/index.ts"
+    "deploy": "wrangler deploy src/index.ts"
   },
   "license": "MIT",
   "dependencies": {

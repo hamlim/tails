@@ -42,3 +42,9 @@ Setting up local db:
 ```sh
 bun wrangler d1 execute tails-db --local --file=./migrations/schema.sql
 ```
+
+Publishing the DB:
+
+```sh
+bun wrangler d1 execute tails-db --file=./migrations/schema.sql
+```
