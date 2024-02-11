@@ -3,7 +3,6 @@ import { redirect } from "next/navigation";
 
 export async function getUser() {
   let sessionId = cookies().get("auth_session")?.value;
-  console.log({ sessionId });
   if (!sessionId) {
     redirect("/enter");
   }
